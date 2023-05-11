@@ -28,22 +28,22 @@ const translation = {
 
 
 
+let setlanguage = function(Langauge){
+    let elements = document.querySelectorAll("[data-word]");
+    elements.forEach((element) => {
+        let translationkey = element.getAttribute("data-word");
+        element.textContent = translation[Langauge][translationkey];
+    })
+}
+
 function change_word(value){
     if(value === "English")
     {
         document.dir = 'ltr' ;
 
-
-
-        // setrtl(false)
-
-
         let input_login = document.querySelectorAll('.div_login_intro_content div input')
 
         let div_register_intro_content = document.querySelectorAll('.div_register_intro_content input')
-
-           
-
 
         if(div_register_intro_content.length >  0)
         {
@@ -80,6 +80,8 @@ function change_word(value){
             input_login[0].dir = 'ltr'
             input_login[1].dir = 'ltr'
         }
+
+        localStorage.setItem("langauge" ,value)
       }
     else{
         document.dir = 'rtl';
@@ -87,10 +89,6 @@ function change_word(value){
 
 
         let input_login = document.querySelectorAll('.div_login_intro_content input')
-
-        
-
-
 
         let div_register_intro_content = document.querySelectorAll('.div_register_intro_content input')
 
@@ -135,6 +133,9 @@ function change_word(value){
         input_login[0].dir = 'rtl';
         input_login[1].dir = 'rtl';
         }
+
+
+        localStorage.setItem("langauge" ,value)
     }
 
 
@@ -145,15 +146,21 @@ function change_word(value){
 
 
 
-
-
-let setlanguage = function(Langauge){
-    let elements = document.querySelectorAll("[data-word]");
-    elements.forEach((element) => {
-        let translationkey = element.getAttribute("data-word");
-        element.textContent = translation[Langauge][translationkey];
-    })
+if(localStorage.getItem('langauge') == 'English')
+{
+    change_word('English')
 }
+else if(localStorage.getItem('langauge') == 'Arabic')
+{
+    change_word('Arabic')
+}
+
+
+
+
+
+
+
 
 
 
